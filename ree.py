@@ -21,28 +21,28 @@ maze1 = [[b,g,b,b,r,b,b,b],
         [b,e,b,r,e,e,b,b],
         [b,e,b,b,b,b,b,b]]
 def check_wall(x, y, new_x, new_y):
-    if maze1[new_x][new_y] != b:
+    if maze1[new_y][new_x] != b:
         return new_x, new_y
     elif maze1[new_y][x] != b:
         return x, new_y
-    elif maze1[y][new_x]:
+    elif maze1[y][new_x] !=  b:
         return new_x, y
     else:
         return x,y
+    
 def move_marble(pitch, roll, x, y):
     new_x = x
     new_y = y
-    if 1 < pitch < 179 and x != 0:
+    if 10 < pitch < 170 and x != 0:
         new_x -= 1
-    if 181 < pitch < 359 and x != 7:
+    if 190 < pitch < 350 and x != 7:
         new_x += 1
-    if 181 < roll < 359 and y != 0:
+    if 190 < roll < 350 and y != 0:
         new_y -= 1
-    if 1 < roll < 179 and y != 7:
+    if 10 < roll < 170 and y != 7:
         new_y += 1
-    new_x, new_y = check_wall(x,y,new_x,new_y)
     return new_x, new_y
-
+    new_x, new_y = check_wall(x,y,new_x,new_y)
     
 while game_over == False:
     o = sense.get_orientation()
@@ -52,5 +52,5 @@ while game_over == False:
     
     maze1[y][x] = a
     sense.set_pixels(sum(maze1,[]))
-    sleep(0.15)
+    sleep(0.2)
     maze1[y][x] = e
