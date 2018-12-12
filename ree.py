@@ -41,8 +41,9 @@ def move_marble(pitch, roll, x, y):
         new_y -= 1
     if 10 < roll < 170 and y != 7:
         new_y += 1
-    return new_x, new_y
     new_x, new_y = check_wall(x,y,new_x,new_y)
+    return new_x, new_y
+    
     
 while game_over == False:
     o = sense.get_orientation()
