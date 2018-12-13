@@ -53,5 +53,5 @@ while game_over == False:
     
     maze1[y][x] = a
     sense.set_pixels(sum(maze1,[]))
-    sleep(0.2)
+    sleep(0.1)
     maze1[y][x] = e
