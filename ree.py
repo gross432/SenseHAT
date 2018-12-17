@@ -1,5 +1,6 @@
 from sense_hat import SenseHat
 from time import sleep
+import random
 sense = SenseHat()
 sense.clear()
 game_over = False
@@ -12,20 +13,54 @@ a = (192, 192, 192)
 e = (0, 0, 0)
     
 
-maze1 = [[b,g,b,b,r,b,b,b],
+maze1 = [[a,e,b,b,r,b,b,b],
         [b,e,e,e,e,e,e,b],
         [b,b,b,b,e,b,r,b],
         [b,b,b,b,e,b,r,b],
         [b,e,e,e,e,e,e,b],
         [b,e,b,b,e,b,b,b],
         [b,e,b,r,e,e,b,b],
-        [b,e,b,b,b,b,b,b]]
+        [b,g,b,b,b,b,b,b]]
+maze2 = [[b,b,b,b,b,b,b,b],
+        [b,b,b,b,b,b,b,b],
+        [b,b,b,b,b,b,b,b],
+        [b,b,b,b,b,b,b,b],
+        [b,b,b,b,b,b,b,b],
+        [b,b,b,b,b,b,b,b],
+        [b,b,b,b,b,b,b,b],
+        [b,b,b,b,b,b,b,b]]
+maze3 = [[b,b,b,b,b,b,b,b],
+        [b,b,b,b,b,b,b,b],
+        [b,b,b,b,b,b,b,b],
+        [b,b,b,b,b,b,b,b],
+        [b,b,b,b,b,b,b,b],
+        [b,b,b,b,b,b,b,b],
+        [b,b,b,b,b,b,b,b],
+        [b,b,b,b,b,b,b,b]]
+maze4 = [[a,e,b,b,b,b,b,b],
+        [b,e,b,e,e,e,r,b],
+        [b,e,r,e,r,e,r,b],
+        [b,e,e,e,e,e,e,b],
+        [b,e,r,e,r,e,g,b],
+        [b,e,e,e,e,e,r,b],
+        [b,b,e,b,b,b,b,b],
+        [b,b,b,b,b,b,b,b]]
+maze5 = [[b,g,b,b,r,b,b,b],
+        [b,e,e,e,e,e,e,b],
+        [b,b,b,b,e,b,r,b],
+        [b,b,b,b,e,b,r,b],
+        [b,e,e,e,e,e,e,b],
+        [b,e,b,b,e,b,b,b],
+        [b,a,b,r,e,e,b,b],
+        [b,b,b,b,b,b,b,b]]
+mazes = [maze1, maze2, maze3, maze4, maze5]
+maze = random.choice(mazes)
 def check_wall(x, y, new_x, new_y):
-    if maze1[new_y][new_x] != b:
+    if maze[new_y][new_x] != b:
         return new_x, new_y
-    elif maze1[new_y][x] != b:
+    elif maze[new_y][x] != b:
         return x, new_y
-    elif maze1[y][new_x] !=  b:
+    elif maze[y][new_x] !=  b:
         return new_x, y
     else:
         return x,y
@@ -51,7 +86,7 @@ while game_over == False:
     roll = o["roll"]
     x,y = move_marble(pitch, roll, x, y)
     
-    maze1[y][x] = a
-    sense.set_pixels(sum(maze1,[]))
+    maze[y][x] = a
+    sense.set_pixels(sum(maze,[]))
     sleep(0.1)
-    maze1[y][x] = e
+    maze[y][x] = e
