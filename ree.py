@@ -21,39 +21,31 @@ maze1 = [[a,e,b,b,r,b,b,b],
         [b,e,b,b,e,b,b,b],
         [b,e,b,r,e,e,b,b],
         [b,g,b,b,b,b,b,b]]
-maze2 = [[b,b,b,b,b,b,b,b],
-        [b,b,b,b,b,b,b,b],
-        [b,b,b,b,b,b,b,b],
-        [b,b,b,b,b,b,b,b],
-        [b,b,b,b,b,b,b,b],
-        [b,b,b,b,b,b,b,b],
-        [b,b,b,b,b,b,b,b],
+maze2 = [[e,e,b,b,b,b,b,b],
+        [b,e,b,r,b,b,b,b],
+        [b,e,e,e,b,b,b,b],
+        [b,e,b,b,b,b,b,b],
+        [b,e,e,e,e,b,b,b],
+        [b,e,b,b,e,b,g,b],
+        [b,r,b,r,e,e,e,b],
         [b,b,b,b,b,b,b,b]]
-maze3 = [[b,b,b,b,b,b,b,b],
-        [b,b,b,b,b,b,b,b],
-        [b,b,b,b,b,b,b,b],
-        [b,b,b,b,b,b,b,b],
-        [b,b,b,b,b,b,b,b],
-        [b,b,b,b,b,b,b,b],
-        [b,b,b,b,b,b,b,b],
-        [b,b,b,b,b,b,b,b]]
-maze4 = [[a,e,b,b,b,b,b,b],
-        [b,e,b,e,e,e,r,b],
-        [b,e,r,e,r,e,r,b],
+maze3 = [[a,e,b,b,b,b,b,b],
+        [b,e,b,r,e,b,b,b],
+        [b,e,e,e,e,b,r,b],
         [b,e,e,e,e,e,e,b],
-        [b,e,r,e,r,e,g,b],
-        [b,e,e,e,e,e,r,b],
-        [b,b,e,b,b,b,b,b],
+        [b,e,b,e,r,e,g,b],
+        [b,e,b,e,e,e,r,b],
+        [b,r,b,b,b,b,b,b],
         [b,b,b,b,b,b,b,b]]
-maze5 = [[b,g,b,b,r,b,b,b],
+maze4 = [[b,e,b,b,r,b,b,b],
         [b,e,e,e,e,e,e,b],
         [b,b,b,b,e,b,r,b],
         [b,b,b,b,e,b,r,b],
         [b,e,e,e,e,e,e,b],
         [b,e,b,b,e,b,b,b],
-        [b,a,b,r,e,e,b,b],
+        [b,e,b,r,e,g,b,b],
         [b,b,b,b,b,b,b,b]]
-mazes = [maze1, maze2, maze3, maze4, maze5]
+mazes = [maze1, maze2, maze3, maze4, ]
 maze = random.choice(mazes)
 def check_wall(x, y, new_x, new_y):
     if maze[new_y][new_x] != b:
@@ -86,6 +78,14 @@ while game_over == False:
     roll = o["roll"]
     x,y = move_marble(pitch, roll, x, y)
     
+    if maze[y][x] == g: 
+      sense.show_message("GG You Ain't Trash")
+      sense.clear()
+      game_over = True
+    if maze[y][x] == r:
+      sense.show_message("Bruh")
+      sense.clear()
+      game_over = True
     maze[y][x] = a
     sense.set_pixels(sum(maze,[]))
     sleep(0.1)
